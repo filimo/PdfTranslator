@@ -12,7 +12,7 @@ import Combine
 
 struct ContentView: View {
     @State var selectedText = ""
-    let url = Bundle.main.url(forResource: "FunctionalSwift", withExtension: "pdf")!
+    let url = Bundle.main.url(forResource: "sample", withExtension: "pdf")!
     var willChangeSelectedText = PassthroughSubject<String, Never>()
     
     func selectionChanged(event: Notification) {
