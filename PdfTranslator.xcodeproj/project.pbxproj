@@ -16,7 +16,6 @@
 		F0CF7C842328109B0000DCC2 /* PDFKitRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C812328109B0000DCC2 /* PDFKitRepresentedView.swift */; };
 		F0CF7C852328109B0000DCC2 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C822328109B0000DCC2 /* SpeechSynthesizer.swift */; };
 		F0CF7C862328109B0000DCC2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C832328109B0000DCC2 /* WebView.swift */; };
-		F0CF7C88232812F90000DCC2 /* FunctionalSwift.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F0CF7C87232812F90000DCC2 /* FunctionalSwift.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		F0CF7C812328109B0000DCC2 /* PDFKitRepresentedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFKitRepresentedView.swift; sourceTree = "<group>"; };
 		F0CF7C822328109B0000DCC2 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		F0CF7C832328109B0000DCC2 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		F0CF7C87232812F90000DCC2 /* FunctionalSwift.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FunctionalSwift.pdf; sourceTree = "<group>"; };
 		F0CF7C89232813220000DCC2 /* PdfTranslator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PdfTranslator.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +68,6 @@
 				F0CF7C80232810560000DCC2 /* Components */,
 				F0CF7C7F2328101E0000DCC2 /* Views */,
 				F0CF7C70232810080000DCC2 /* Assets.xcassets */,
-				F0CF7C87232812F90000DCC2 /* FunctionalSwift.pdf */,
 				F0CF7C75232810080000DCC2 /* LaunchScreen.storyboard */,
 				F0CF7C78232810080000DCC2 /* Info.plist */,
 				F0CF7C72232810080000DCC2 /* Preview Content */,
@@ -174,7 +171,6 @@
 				F0CF7C77232810080000DCC2 /* LaunchScreen.storyboard in Resources */,
 				F0CF7C74232810080000DCC2 /* Preview Assets.xcassets in Resources */,
 				F0CF7C71232810080000DCC2 /* Assets.xcassets in Resources */,
-				F0CF7C88232812F90000DCC2 /* FunctionalSwift.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
