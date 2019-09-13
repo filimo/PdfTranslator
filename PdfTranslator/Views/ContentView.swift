@@ -16,13 +16,10 @@ struct ContentView: View {
     @State var selectedText = ""
     @State var url: URL?
     
-    var page = Page()
-        
+    @UserDefault(key: "LAST_PAGE", defaultValue: "1")
+    var last_page: String
+
     private var willChangeSelectedText = PassthroughSubject<String, Never>()
-    
-    class Page {
-        @UserDefault(key: "LAST_PAGE", defaultValue: "1") var last_page: String
-    }
     
     var body: some View {
         VStack {
@@ -41,7 +38,7 @@ struct ContentView: View {
                 guard let document = pdfView.document else { return }
                 
                 RunLoop.main.perform {
-                    self.currentPage = self.page.last_page
+                    self.currentPage = self.last_page
                     self.goCurrentPage()
                     self.pageCount = document.pageCount
                 }
@@ -54,7 +51,7 @@ struct ContentView: View {
                 if let page = pdfView.document?.index(for: page) {
                     RunLoop.main.perform {
                         self.currentPage = String(page + 1)
-                        self.page.last_page = self.currentPage
+                        self.last_page = self.currentPage
                     }
                 }
             }
