@@ -33,7 +33,9 @@ struct ContentView: View {
                 }) {
                     Image(systemName: "volume.3.fill")
                 }
-                TextField("   ", text: $currentPage, onCommit: goCurrentPage).fixedSize().background(Color.gray)
+                TextField("   ", text: $currentPage, onCommit: goCurrentPage).fixedSize()
+                    .keyboardType(.numberPad)
+                    .background(Color.gray)
                 Text(" / \(pageCount)")
             }
         }
@@ -68,8 +70,10 @@ struct ContentView: View {
                 .debounce(for: 0.5, scheduler: RunLoop.main)
                 .removeDuplicates()
                 .sink { text in
-                    SpeechSynthesizer.speech(text: text)
-                    self.selectedText = text
+                    if(text != "") {
+                        SpeechSynthesizer.speech(text: text)
+                        self.selectedText = text
+                    }
             }
             
             self.url = Bundle.main.url(forResource: "FunctionalSwift", withExtension: "pdf")
