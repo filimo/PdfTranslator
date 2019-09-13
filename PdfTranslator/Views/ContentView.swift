@@ -28,6 +28,11 @@ struct ContentView: View {
                 TranslatorView(text: .constant(URLQueryItem(name: "text", value: selectedText)))
             }
             HStack {
+                Button(action: {
+                    SpeechSynthesizer.speech(text: self.getSelectedText())
+                }) {
+                    Image(systemName: "volume.3.fill")
+                }
                 TextField("   ", text: $currentPage, onCommit: goCurrentPage).fixedSize().background(Color.gray)
                 Text(" / \(pageCount)")
             }
@@ -56,7 +61,9 @@ struct ContentView: View {
                 }
             }
 
-            NotificationCenter.default.addObserver(forName: .PDFViewSelectionChanged, object: nil, queue: nil, using: self.selectionChanged(event:))
+            NotificationCenter.default.addObserver(forName: .PDFViewSelectionChanged, object: nil, queue: nil) { _ in
+                self.willChangeSelectedText.send(self.getSelectedText())
+            }
             _ = self.willChangeSelectedText
                 .debounce(for: 0.5, scheduler: RunLoop.main)
                 .removeDuplicates()
@@ -77,14 +84,12 @@ struct ContentView: View {
         }
     }
     
-    func selectionChanged(event: Notification) {
-        guard let pdfView = event.object as? PDFView else { return }
-        guard let selections = pdfView.currentSelection?.selectionsByLine() else { return }
+    func getSelectedText() -> String {
+        guard let selections = PDFKitView.pdfView.currentSelection?.selectionsByLine() else { return "" }
 
-        let text = selections
+        return selections
             .map { selection in selection.string! }
             .joined(separator: " ")
-        willChangeSelectedText.send(text)
     }
 }
 
