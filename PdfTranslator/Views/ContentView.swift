@@ -16,20 +16,37 @@ struct ContentView: View {
     @State var selectedText = ""
     @State var url: URL?
     
+    var page = Page()
+        
     private var willChangeSelectedText = PassthroughSubject<String, Never>()
+    
+    class Page {
+        @UserDefault(key: "LAST_PAGE", defaultValue: "1") var last_page: String
+    }
     
     var body: some View {
         VStack {
             HStack {
                 PDFKitView(url: $url)
-                WebView(text: .constant(URLQueryItem(name: "text", value: selectedText)))
+                TranslatorView(text: .constant(URLQueryItem(name: "text", value: selectedText)))
             }
             HStack {
-                TextField("   ", text: $currentPage, onCommit: goToPage).fixedSize().background(Color.gray)
+                TextField("   ", text: $currentPage, onCommit: goCurrentPage).fixedSize().background(Color.gray)
                 Text(" / \(pageCount)")
             }
         }
         .onAppear {
+            NotificationCenter.default.addObserver(forName: .PDFViewDocumentChanged, object: nil, queue: nil) { event in
+                guard let pdfView = event.object as? PDFView else { return }
+                guard let document = pdfView.document else { return }
+                
+                RunLoop.main.perform {
+                    self.currentPage = self.page.last_page
+                    self.goCurrentPage()
+                    self.pageCount = document.pageCount
+                }
+            }
+
             NotificationCenter.default.addObserver(forName: .PDFViewPageChanged, object: nil, queue: nil) { event in
                 guard let pdfView = event.object as? PDFView else { return }
                 guard let page = pdfView.currentPage else { return }
@@ -37,16 +54,8 @@ struct ContentView: View {
                 if let page = pdfView.document?.index(for: page) {
                     RunLoop.main.perform {
                         self.currentPage = String(page + 1)
+                        self.page.last_page = self.currentPage
                     }
-                }
-            }
-
-            NotificationCenter.default.addObserver(forName: .PDFViewDocumentChanged, object: nil, queue: nil) { event in
-                guard let pdfView = event.object as? PDFView else { return }
-                guard let document = pdfView.document else { return }
-                
-                RunLoop.main.perform {
-                    self.pageCount = document.pageCount
                 }
             }
 
@@ -63,7 +72,7 @@ struct ContentView: View {
         }
     }
     
-    func goToPage() {
+    func goCurrentPage() {
         guard let document = PDFKitView.pdfView.document else { return }
         guard let page = Int(currentPage) else { return }
         if let page = document.page(at: page - 1) {

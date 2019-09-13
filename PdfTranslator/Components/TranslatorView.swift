@@ -9,7 +9,7 @@
 import SwiftUI
 import WebKit
   
-struct WebView : UIViewRepresentable {
+struct TranslatorView : UIViewRepresentable {
     @Binding var text: URLQueryItem
       
     func makeUIView(context: Context) -> WKWebView  {
