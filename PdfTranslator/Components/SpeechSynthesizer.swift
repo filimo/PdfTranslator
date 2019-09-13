@@ -22,6 +22,7 @@ class SpeechSynthesizer {
 
         let speechUtterance: AVSpeechUtterance = AVSpeechUtterance(string: text)
         speechUtterance.voice = AVSpeechSynthesisVoice.speechVoices().first(where: { $0.name == "Tessa" })
+        speechUtterance.rate = 0.4
 
         if speechSynthesizer.isSpeaking {
             speechSynthesizer.stopSpeaking(at: .immediate)

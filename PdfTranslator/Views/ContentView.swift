@@ -11,27 +11,45 @@ import PDFKit
 import Combine
 
 struct ContentView: View {
+    @State var currentPage = "1"
+    @State var pageCount = 0
     @State var selectedText = ""
-    let url = Bundle.main.url(forResource: "sample", withExtension: "pdf")!
-    var willChangeSelectedText = PassthroughSubject<String, Never>()
+    @State var url: URL?
     
-    func selectionChanged(event: Notification) {
-        if let pdfView = event.object as? PDFView {
-            if let selections = pdfView.currentSelection?.selectionsByLine() {
-                let text = selections
-                    .map { selection in selection.string! }
-                    .joined(separator: " ")
-                willChangeSelectedText.send(text)
-            }
-        }
-    }
+    private var willChangeSelectedText = PassthroughSubject<String, Never>()
     
     var body: some View {
-        HStack {
-            PDFKitView(url: url)
-            WebView(text: .constant(URLQueryItem(name: "text", value: selectedText)))
+        VStack {
+            HStack {
+                PDFKitView(url: $url)
+                WebView(text: .constant(URLQueryItem(name: "text", value: selectedText)))
+            }
+            HStack {
+                TextField("   ", text: $currentPage, onCommit: goToPage).fixedSize().background(Color.gray)
+                Text(" / \(pageCount)")
+            }
         }
         .onAppear {
+            NotificationCenter.default.addObserver(forName: .PDFViewPageChanged, object: nil, queue: nil) { event in
+                guard let pdfView = event.object as? PDFView else { return }
+                guard let page = pdfView.currentPage else { return }
+                
+                if let page = pdfView.document?.index(for: page) {
+                    RunLoop.main.perform {
+                        self.currentPage = String(page + 1)
+                    }
+                }
+            }
+
+            NotificationCenter.default.addObserver(forName: .PDFViewDocumentChanged, object: nil, queue: nil) { event in
+                guard let pdfView = event.object as? PDFView else { return }
+                guard let document = pdfView.document else { return }
+                
+                RunLoop.main.perform {
+                    self.pageCount = document.pageCount
+                }
+            }
+
             NotificationCenter.default.addObserver(forName: .PDFViewSelectionChanged, object: nil, queue: nil, using: self.selectionChanged(event:))
             _ = self.willChangeSelectedText
                 .debounce(for: 0.5, scheduler: RunLoop.main)
@@ -40,7 +58,27 @@ struct ContentView: View {
                     SpeechSynthesizer.speech(text: text)
                     self.selectedText = text
             }
+            
+            self.url = Bundle.main.url(forResource: "FunctionalSwift", withExtension: "pdf")
         }
+    }
+    
+    func goToPage() {
+        guard let document = PDFKitView.pdfView.document else { return }
+        guard let page = Int(currentPage) else { return }
+        if let page = document.page(at: page - 1) {
+            PDFKitView.pdfView.go(to: page)
+        }
+    }
+    
+    func selectionChanged(event: Notification) {
+        guard let pdfView = event.object as? PDFView else { return }
+        guard let selections = pdfView.currentSelection?.selectionsByLine() else { return }
+
+        let text = selections
+            .map { selection in selection.string! }
+            .joined(separator: " ")
+        willChangeSelectedText.send(text)
     }
 }
 

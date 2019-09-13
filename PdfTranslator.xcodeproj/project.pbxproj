@@ -8,19 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		F0C5E13D23281D3A00052F6A /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F0C5E13C23281D3A00052F6A /* sample.pdf */; };
+		F0C5E13F2328F7A700052F6A /* FunctionalSwift.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F0C5E13E2328F7A700052F6A /* FunctionalSwift.pdf */; };
 		F0CF7C6B232810070000DCC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C6A232810070000DCC2 /* AppDelegate.swift */; };
 		F0CF7C6D232810070000DCC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C6C232810070000DCC2 /* SceneDelegate.swift */; };
 		F0CF7C6F232810070000DCC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C6E232810070000DCC2 /* ContentView.swift */; };
 		F0CF7C71232810080000DCC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0CF7C70232810080000DCC2 /* Assets.xcassets */; };
 		F0CF7C74232810080000DCC2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0CF7C73232810080000DCC2 /* Preview Assets.xcassets */; };
 		F0CF7C77232810080000DCC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0CF7C75232810080000DCC2 /* LaunchScreen.storyboard */; };
-		F0CF7C842328109B0000DCC2 /* PDFKitRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C812328109B0000DCC2 /* PDFKitRepresentedView.swift */; };
+		F0CF7C842328109B0000DCC2 /* PDFKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C812328109B0000DCC2 /* PDFKitView.swift */; };
 		F0CF7C852328109B0000DCC2 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C822328109B0000DCC2 /* SpeechSynthesizer.swift */; };
 		F0CF7C862328109B0000DCC2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF7C832328109B0000DCC2 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F0C5E13C23281D3A00052F6A /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
+		F0C5E13E2328F7A700052F6A /* FunctionalSwift.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FunctionalSwift.pdf; sourceTree = "<group>"; };
 		F0CF7C67232810070000DCC2 /* PdfTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PdfTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0CF7C6A232810070000DCC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0CF7C6C232810070000DCC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,7 +31,7 @@
 		F0CF7C73232810080000DCC2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0CF7C76232810080000DCC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0CF7C78232810080000DCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F0CF7C812328109B0000DCC2 /* PDFKitRepresentedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFKitRepresentedView.swift; sourceTree = "<group>"; };
+		F0CF7C812328109B0000DCC2 /* PDFKitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFKitView.swift; sourceTree = "<group>"; };
 		F0CF7C822328109B0000DCC2 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		F0CF7C832328109B0000DCC2 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F0CF7C89232813220000DCC2 /* PdfTranslator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PdfTranslator.entitlements; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				F0CF7C7F2328101E0000DCC2 /* Views */,
 				F0CF7C70232810080000DCC2 /* Assets.xcassets */,
 				F0C5E13C23281D3A00052F6A /* sample.pdf */,
+				F0C5E13E2328F7A700052F6A /* FunctionalSwift.pdf */,
 				F0CF7C75232810080000DCC2 /* LaunchScreen.storyboard */,
 				F0CF7C78232810080000DCC2 /* Info.plist */,
 				F0CF7C72232810080000DCC2 /* Preview Content */,
@@ -106,7 +109,7 @@
 		F0CF7C80232810560000DCC2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				F0CF7C812328109B0000DCC2 /* PDFKitRepresentedView.swift */,
+				F0CF7C812328109B0000DCC2 /* PDFKitView.swift */,
 				F0CF7C822328109B0000DCC2 /* SpeechSynthesizer.swift */,
 				F0CF7C832328109B0000DCC2 /* WebView.swift */,
 			);
@@ -171,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C5E13F2328F7A700052F6A /* FunctionalSwift.pdf in Resources */,
 				F0C5E13D23281D3A00052F6A /* sample.pdf in Resources */,
 				F0CF7C77232810080000DCC2 /* LaunchScreen.storyboard in Resources */,
 				F0CF7C74232810080000DCC2 /* Preview Assets.xcassets in Resources */,
@@ -185,7 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0CF7C842328109B0000DCC2 /* PDFKitRepresentedView.swift in Sources */,
+				F0CF7C842328109B0000DCC2 /* PDFKitView.swift in Sources */,
 				F0CF7C6B232810070000DCC2 /* AppDelegate.swift in Sources */,
 				F0CF7C6D232810070000DCC2 /* SceneDelegate.swift in Sources */,
 				F0CF7C862328109B0000DCC2 /* WebView.swift in Sources */,
