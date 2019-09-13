@@ -1,4 +1,4 @@
-# PdfTranslator
+# PdfTranslator for MacOS, iPad and iPhone
 PDF reader with Google Translate embedded
 
 Description:
